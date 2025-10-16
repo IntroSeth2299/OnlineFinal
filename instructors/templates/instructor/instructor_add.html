@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Add Instructor{% endblock %} 
+{% block content %}
+  
+  <div class="container-sm">
+    <h2 class="mb-4">Add Instructor</h2>
+    <form method="post">
+      {% csrf_token %} {{form.as_p}}
+      <button type="submit" class="button-link">Save</button>
+    </form>
+
+    <a href="{% url 'instructor_list' %}" class="button-link">Cancel</a>
+  </div>
+{% endblock content %}

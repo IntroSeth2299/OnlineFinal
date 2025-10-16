@@ -1,0 +1,17 @@
+{% extends "employee_base.html" %}
+{% block title %}Dashboard{% endblock %} 
+
+{% block content %}
+
+<div class="container-md">
+  <h2 style="margin-bottom: 20px; color: #ffc107; font-weight: bold;"> Employee Overview</h2>
+
+  <div class="dashboard-card">
+    <div class="card">
+      <h3> Employee</h3>
+      <p>{{ employee_count }}</p>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

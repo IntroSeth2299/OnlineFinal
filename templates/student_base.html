@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <title>{% block title %}POS System{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="left">System View</div>
+      <div class="center">
+        <a href="{% url 'student_list' %}">Student</a>
+        <a href="{% url 'enrollment_list' %}">Enrollment</a>
+        <a href="{% url 'lesson_list' %}">Lesson</a>
+      </div>
+      <div class="right">
+      <a href="{% url 'user_list' %}" class="button-link button-sm" style="background-color: #198754;">User</a>
+      </div>
+    </div>
+
+    <div class="container">{% block content %}{% endblock %}</div>
+  </body>
+</html>

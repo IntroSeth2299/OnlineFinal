@@ -1,0 +1,41 @@
+{% extends "instructor_base.html" %}
+{% block title %}Dashboard{% endblock %} 
+
+{% block content %}
+<div class="container-md">
+  <h2 style="margin-bottom: 20px; color: #0dcaf0; font-weight: bold;">Instructor Overview</h2>
+
+  <div class="dashboard-card">
+    <div class="card">
+      <h3> Lesson</h3>
+      <p>{{ lesson_count }}</p>
+    </div>
+    <div class="card">
+      <h3> Lesson Progress</h3>
+      <p>{{ lesson_progress_count }}</p>
+    </div>
+      <div class="card">
+      <h3> Review</h3>
+      <p>{{ review_count }}</p>
+    </div>
+    <div class="card">
+      <h3> Course</h3>
+      <p>{{ course_count }}</p>
+    </div>
+    <div class="card">
+      <h3>Instructor</h3>
+      <p>{{ instructor_count }}</p>
+    </div>
+    <div class="card">
+      <h3> Category</h3>
+      <p>{{ category_count }}</p>
+    </div>
+       <div class="card">
+      <h3>Tag</h3>
+      <p>{{ tag_count }}</p>
+    </div>
+    
+  </div>
+</div>
+
+{% endblock content %}

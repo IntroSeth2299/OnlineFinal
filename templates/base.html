@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <title>{% block title %}POS System{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="left">System View</div>
+      <div class="center">
+        <a href="{% url 'dashboard_home' %}">Dashboard</a>
+        <a href="{% url 'user_list' %}">User</a>
+      </div>
+      <div class="right">
+      <a href="{% url 'logout' %}" class="button-link button-sm delete-btn">Logout</a>
+      </div>
+    </div>
+
+    <div class="container">{% block content %}{% endblock %}</div>
+  </body>
+</html>

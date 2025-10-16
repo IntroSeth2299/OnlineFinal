@@ -1,0 +1,25 @@
+{% extends "student_base.html" %}
+{% block title %}Dashboard Student{% endblock %} 
+
+{% block content %}
+
+<div class="container-md">
+  <h2 style="margin-bottom: 20px;color: #198754; font-weight: bold;"> Student Overview</h2>
+
+  <div class="dashboard-card">
+    <div class="card">
+      <h3> Student</h3>
+      <p>{{ student_count }}</p>
+    </div>
+    <div class="card">
+      <h3>Lesson</h3>
+      <p>{{ lesson_count }}</p>
+    </div>
+     <div class="card">
+      <h3>Enrollment</h3>
+      <p>{{ enrollment_count }}</p>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

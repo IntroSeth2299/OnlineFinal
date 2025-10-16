@@ -1,0 +1,59 @@
+{% extends "student_base.html" %}
+{% block title %}Enrollment List{% endblock %} 
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>School System</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+    <div class="container-sm">
+      <h2>Enrollment List</h2>
+      <a href="{% url 'enrollment_add' %}"  class="button-link">Add Enrollment</a>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Student</th>
+            <th scope="col">Course</th>
+            <th scope="col">Enrolled</th>
+            <th scope="col">Completed</th>
+            <th scope="col">Completed At</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for enrollment in enrollments %}
+          <tr>
+            <td>{{ enrollment.id }}</td>
+            <td>{{ enrollment.student}}</td>
+            <td>{{ enrollment.course}}</td>
+            <td>{{ enrollment.enrolled_at}}</td>
+            <td>{{ enrollment.completed }}</td>
+            <td>{{ enrollment.completed_at }}</td>
+             <td>
+              <a href="{% url 'enrollment_edit' enrollment.id %} "class="button-link button-sm">Edit</a>
+              <a href="{% url 'enrollment_delete' enrollment.id %} " class="button-link button-sm delete-btn">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
+{% endblock content %}

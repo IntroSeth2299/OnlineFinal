@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}User List{% endblock %}
+{% block content %}
+
+<div class="container-md">
+  <h2 style="text-align: center; color: #007bff; margin-bottom: 20px;">User List</h2>
+
+  <div style="display: flex; justify-content: flex-end;">
+    <a href="{% url 'user_add' %}" class="button-link">Add User</a>
+  </div>
+
+  <div class="form-container" style="margin-top: 10px;">
+    <table class="table">
+      <thead>
+        <tr>
+          <th style="width: 5%;">#</th>
+          <th style="width: 15%;">Role</th>
+          <th style="width: 15%;">Phone</th>
+          <th style="width: 20%;">Username</th>
+          <th style="width: 20%;">Dashboard</th>
+          <th style="width: 25%;">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td><strong>{{ user.id }}</strong></td>
+
+          <td>
+            {% if user.role == "instructor" %}
+              <span style="color: #0dcaf0; font-weight: bold;">Instructor</span>
+            {% elif user.role == "student" %}
+              <span style="color: #198754; font-weight: bold;">Student</span>
+            {% elif user.role == "employee" %}
+              <span style="color: #ffc107; font-weight: bold;">Employee</span>
+            {% else %}
+              <span style="color: gray;">Unknown</span>
+            {% endif %}
+          </td>
+
+          <td>{{ user.phone|default:"—" }}</td>
+          <td style="font-weight: bold;">{{ user.username }}</td>
+
+          <td>
+            {% if user.role == "instructor" %}
+              <a href="{% url 'instructor_dashboard' %}" class="button-link button-sm" style="background-color: #0dcaf0;">View</a>
+            {% elif user.role == "student" %}
+              <a href="{% url 'student_dashboard' %}" class="button-link button-sm" style="background-color: #198754;">View</a>
+        {% elif user.role == "employee" %}
+    <a href="{% url 'employee_dashboard' %}" class="button-link button-sm" style="background-color: #ffc107;">View</a>
+{% endif %}
+          </td>
+
+          <td>
+            <a href="{% url 'user_edit' user.id %}" class="button-link button-sm">Edit</a>
+            <a href="{% url 'user_delete' user.id %}" class="button-link button-sm delete-btn">Delete</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="6" style="text-align: center; color: #999; padding: 20px;">
+            No users found.
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,68 @@
+{% extends "instructor_base.html" %}
+{% block title %}Instructor List{% endblock %} 
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inventory System</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+    <div class="container-sm">
+      <h2>Instructor List</h2>
+      <a href="{% url 'instructor_add' %}"  class="button-link">Add Instructor</a>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">User</th>
+            <th scope="col">Date</th>
+            <th scope="col">Expertise</th>
+            <th scope="col">Website</th>
+            <th scope="col">View</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for instructor in instructors %}
+          <tr>
+            <td>{{ instructor.pk }}</td>
+            <td>{{ instructor.user}}</td>
+            <td>{{ instructor.hire_date}}</td>
+            <td>{{ instructor.expertise}}</td>
+            <td>{{ instructor.website }}</td>
+            
+          <td>
+            {% if instructor.user.role == "instructor" %}
+              <a href="{% url 'instructor_dashboard' %}" class="button-link button-sm" style="background-color: #0dcaf0;">View</a>
+            {% elif instructor.user.role == "student" %}
+              <a href="{% url 'student_dashboard' %}" class="button-link button-sm" style="background-color: #198754;">View</a>
+        {% elif instructor.user.role == "employee" %}
+    <a href="{% url 'employee_dashboard' %}" class="button-link button-sm" style="background-color: #ffc107;">View</a>
+{% endif %}
+          </td>
+             <td>
+              <a href="{% url 'instructor_edit' instructor.pk %} "class="button-link button-sm">Edit</a>
+              <a href="{% url 'instructor_delete' instructor.pk %} " class="button-link button-sm delete-btn">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
+{% endblock content %}

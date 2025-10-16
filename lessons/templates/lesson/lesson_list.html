@@ -1,0 +1,103 @@
+{% extends "student_base.html" %}
+{% block title %}Lesson List{% endblock %}
+
+{% block content %}
+<div class="container-md mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Lesson List</h2>
+    <a href="{% url 'lesson_add' %}" class="button-link">Add Lesson</a>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+      <thead class="table-primary">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Course</th>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">URL</th>
+          <th scope="col">Order</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for lesson in lessons %}
+        <tr>
+          <td>{{ lesson.id }}</td>
+          <td>{{ lesson.course }}</td>
+          <td>{{ lesson.title }}</td>
+          <td>{{ lesson.description }}</td>
+          <td>
+            {% if lesson.video_url %}
+              <a href="{{ lesson.video_url }}" target="_blank" class="button-link button-sm">Video</a>
+            {% else %}
+              -
+            {% endif %}
+          </td>
+          <td>{{ lesson.order }}</td>
+          <td>
+            <a href="{% url 'lesson_edit' lesson.id %}" class="button-link button-sm me-1">Edit</a>
+            <a href="{% url 'lesson_delete' lesson.id %}" class="button-link button-sm delete-btn">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<style>
+/* Container spacing */
+.container-md {
+  max-width: 95%;
+}
+
+/* Buttons */
+.button-link {
+  display: inline-block;
+  padding: 8px 14px;
+  margin: 4px;
+  background-color: #007bff;
+  color: white !important;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.button-link:hover {
+  background-color: #0056b3;
+}
+
+.button-sm {
+  padding: 4px 8px;
+  font-size: 0.75rem;
+}
+
+.delete-btn {
+  background-color: #dc3545 !important;
+}
+
+.delete-btn:hover {
+  background-color: #b52a35 !important;
+}
+
+/* Table styling */
+.table-primary th {
+  background-color: #007bff !important;
+  color: white;
+  text-align: center;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.link-primary {
+  color: #0d6efd;
+  text-decoration: underline;
+}
+</style>
+{% endblock content %}
